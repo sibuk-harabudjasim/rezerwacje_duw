@@ -1,3 +1,4 @@
 aiohttp
 beautifulsoup4
+environs
 git+https://github.com/sibuk-harabudjasim/yaaiotg.git
