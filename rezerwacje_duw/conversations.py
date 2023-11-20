@@ -30,7 +30,6 @@ async def introduce_myself(dialog, initial_message=None):
 
 
 async def subscribe(user: User, callback_actions: CallbackActions, service: Services):
-    print(f"subscribe({user=}, {callback_actions=}, {service=})")
     if service not in Services:
         callback_actions.delete_message()
         return
@@ -39,7 +38,6 @@ async def subscribe(user: User, callback_actions: CallbackActions, service: Serv
 
 
 async def unsubscribe(user: User, callback_actions: CallbackActions, service: Services):
-    print(f"unsubscribe({user=}, {callback_actions=}, {service=})")
     if service not in Services:
         callback_actions.delete_message()
         return
@@ -66,7 +64,6 @@ async def talk(dialog, initial_message=None):
     while True:
         action = yield dialog.ask("What do we do now?", keyboard=main_keyboard)
         if action:
-            print('return', action)
             yield dialog.say("Just use my shiny buttons :)")
 
 
@@ -78,6 +75,6 @@ async def send_notification(bot: YaaiotgBot, subscriber_id: int, service: Servic
 async def start_bot(userstorage: UserStorageBase, task_manager: TaskManager):
     token = os.getenv('TELEGRAM_TOKEN')
     bot = YaaiotgBot(userstorage=userstorage, api_token=token)
-    # task_manager.notifications_signal.add_observer(1, partial(send_notification, bot=bot), raise_exc=False)
+    task_manager.notifications_signal.add_observer(1, partial(send_notification, bot=bot), raise_exc=False)
     bot.entry_point = talk
     await bot.run()

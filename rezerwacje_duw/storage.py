@@ -54,7 +54,6 @@ class UsersFileStorage(UserStorageBase):
             return {}
         with open(USERS_FILENAME, "r") as f:
             data = json.load(f)
-        print(data)
         return {id: User.from_dict(self.task_manager, userdata) for id, userdata in data}
 
     def save_file(self) -> None:
