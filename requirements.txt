@@ -1,4 +1,4 @@
-aiohttp
-beautifulsoup4
-environs
+aiohttp>=3.8
+beautifulsoup4>=4.12
+environs>=9.5
 git+https://github.com/sibuk-harabudjasim/yaaiotg.git
